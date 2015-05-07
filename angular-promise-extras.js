@@ -38,6 +38,10 @@
         return $q.all(mapValues(values, callback))
       }
 
+      $q.mapSettled = function(values, callback) {
+        return $q.allSettled(mapValues(values, callback))
+      }
+
       return $q
     })
   })
