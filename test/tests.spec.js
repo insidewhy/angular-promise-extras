@@ -21,13 +21,15 @@ describe('angular-promise-extras', function () {
     })
 
     it('works when passed an array', function(done) {
+      proms.push(4)
+
       var testProm = $q.allSettled(proms).then(function(results) {
         expect(results[0].state).toBe('fulfilled')
         expect(results[1].state).toBe('rejected')
         expect(results[2].state).toBe('fulfilled')
         expect(results[0].value).toBe(1)
         expect(results[1].reason).toBe(2)
-        expect(results[2].value).toBe(3)
+        expect(results[3].value).toBe(4)
       })
       .then(done, done.fail)
 

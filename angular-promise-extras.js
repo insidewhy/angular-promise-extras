@@ -22,8 +22,11 @@
       var $q = $delegate
 
       $q.allSettled = function(promises) {
-        return $q.all(mapValues(promises, function(promise) {
-          return promise.then(function(value) {
+        return $q.all(mapValues(promises, function(promiseOrValue) {
+          if (! promiseOrValue.then)
+            return { state: 'fulfilled', value: promiseOrValue }
+
+          return promiseOrValue.then(function(value) {
             return { state: 'fulfilled', value: value }
           }, function(reason) {
             return { state: 'rejected', reason: reason }

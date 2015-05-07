@@ -1,6 +1,6 @@
 {
   "name": "angular-promise-extras",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provides $q.allSettled and $q.map",
   "main": "angular-promise-extras.js",
   "scripts": {
