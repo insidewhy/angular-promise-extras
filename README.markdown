@@ -1,5 +1,7 @@
 # angular-promise-extras
 
+[![build status](https://circleci.com/gh/ohjames/angular-promise-extras.png)](https://circleci.com/gh/ohjames/angular-promise-extras)
+
 ## Installation
 
 1. Install the package
