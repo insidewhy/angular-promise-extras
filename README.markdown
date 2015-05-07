@@ -33,11 +33,11 @@ promises[1].reject(2)
 Also works with objects:
 
 ```javascript
-var deferreds = [ $q.defer(), $q.defer(), 3 ]
+var deferreds = [ $q.defer(), $q.defer() ]
 var promisesArray = deferreds.map(function(deferred) {
   return deferred.promise
 })
-var promises = { a: promisesArray[0], b: promisesArray[1], c: promisesArray[2]  }
+var promises = { a: promisesArray[0], b: promisesArray[1], c: 3  }
 
 $q.allSettled(promises).then(function(values) {
   expect(values).toEqual({
