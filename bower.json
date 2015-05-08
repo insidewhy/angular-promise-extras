@@ -1,7 +1,7 @@
 {
   "name": "angular-promise-extras",
-  "version": "0.1.2",
-  "description": "Provides $q.allSettled and $q.map",
+  "version": "0.1.3",
+  "description": "Adds some extra functions to $q such as $q.allSettled.",
   "main": "./angular-promise-extras.js",
   "moduleType": "globals",
   "ignore": [ "karma.conf.js", "test" ],

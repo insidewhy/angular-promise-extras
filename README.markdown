@@ -56,3 +56,4 @@ promises[1].reject(2)
 Also provides
   * `$q.map`: works like `Bluebird.map` or `Bluebird.props` depending on whether an array or an object is passed.
   * `$q.mapSettled`: Works like `$q.map` but with the settled semantics.
+  * `$q.resolve`: Works like `Bluebird.resolve.
