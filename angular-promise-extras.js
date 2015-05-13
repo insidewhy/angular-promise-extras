@@ -18,7 +18,7 @@
   }
 
   angular.module('ngPromiseExtras', []).config(function($provide) {
-    $provide.decorator('$q', ['$delegate'], function($delegate) {
+    $provide.decorator('$q', function($delegate) {
       var $q = $delegate
 
       $q.allSettled = function(promises) {
