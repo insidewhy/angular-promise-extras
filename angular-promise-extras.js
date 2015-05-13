@@ -17,7 +17,7 @@
     return ret
   }
 
-  angular.module('ngPromiseExtras', []).config(function($provide) {
+  angular.module('ngPromiseExtras', []).config([ '$provide', function($provide) {
     $provide.decorator('$q', function($delegate) {
       var $q = $delegate
 
@@ -54,6 +54,6 @@
 
       return $q
     })
-  })
+  } ])
 
 })(window.angular)
