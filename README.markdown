@@ -15,12 +15,13 @@
 ## Usage
 
 ```javascript
-var deferreds = [ $q.defer(), $q.defer(), 3 ]
-var promises = deferreds.map(function(deferred) {
+var deferreds = [ $q.defer(), $q.defer() ]
+var asyncVals = deferreds.map(function(deferred) {
   return deferred.promise
 })
+asyncVals.push(3)
 
-$q.allSettled(promises).then(function(values) {
+$q.allSettled(asyncVals).then(function(values) {
   expect(values).toEqual([
     { state: 'fulfilled', value: 1 },
     { state: 'rejected', reason: 2 },
@@ -28,8 +29,8 @@ $q.allSettled(promises).then(function(values) {
   ])
 })
 
-promises[0].resolve(1)
-promises[1].reject(2)
+deferreds[0].resolve(1)
+deferreds[1].reject(2)
 ```
 
 Also works with objects:
@@ -49,8 +50,8 @@ $q.allSettled(promises).then(function(values) {
   })
 })
 
-promises[0].resolve(1)
-promises[1].reject(2)
+deferreds[0].resolve(1)
+deferreds[1].reject(2)
 ```
 
 Also provides
