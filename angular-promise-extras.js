@@ -56,4 +56,4 @@
     } ])
   } ])
 
-})(window.angular)
+})(window.angular);
