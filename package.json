@@ -24,6 +24,6 @@
     "karma": "^0.12.31",
     "karma-cli": "0.0.4",
     "karma-jasmine": "^0.3.5",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-chrome-launcher": "^0.2.3"
   }
 }
