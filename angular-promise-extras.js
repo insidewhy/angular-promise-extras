@@ -42,14 +42,16 @@
         return $q.allSettled(mapValues(values, callback))
       }
 
-      /**
-       * Like Bluebird.resolve.
-       */
-      $q.resolve = function(value) {
-        if (value && value.then)
-          return value
-        else
-          return $q(function(resolve) { resolve(value) })
+      if (! $q.resolve) {
+        /**
+         * Like Bluebird.resolve (was introduced in angular 1.4).
+         */
+        $q.resolve = function(value) {
+          if (value && value.then)
+            return value
+          else
+            return $q(function(resolve) { resolve(value) })
+        }
       }
 
       return $q
