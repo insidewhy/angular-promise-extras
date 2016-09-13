@@ -1,8 +1,8 @@
 {
   "name": "angular-promise-extras",
-  "version": "0.1.3",
+  "version": "0.1.7",
   "description": "Adds some extra functions to $q like $q.allSettled",
-  "main": "angular-promise-extras.js",
+  "main": "./angular-promise-extras.js",
   "scripts": {
     "test": "bower install && karma start --single-run"
   },
