@@ -4,6 +4,17 @@
 
 ## Installation
 
+### WebPack
+
+1. Install the package
+    ```
+    npm install --save angular-promise-extras
+    ```
+2. `require`/`import` `angular-promise-extras`.
+3. Add the angular module `ngPromiseExtras` as a dependency of your application module.
+
+### Bower
+
 1. Install the package
     ```
     bower install --save angular-promise-extras
