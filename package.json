@@ -1,6 +1,6 @@
 {
   "name": "angular-promise-extras",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Adds some extra functions to $q like $q.allSettled",
   "main": "./angular-promise-extras.js",
   "scripts": {
