@@ -23,7 +23,7 @@ describe('angular-promise-extras', function () {
     it('works when passed an array', function (done) {
       proms.push(4)
 
-      var testProm = $q.allSettled(proms).then(function (results) {
+      $q.allSettled(proms).then(function (results) {
         expect(results[0].state).toBe('fulfilled')
         expect(results[1].state).toBe('rejected')
         expect(results[2].state).toBe('fulfilled')
@@ -38,7 +38,7 @@ describe('angular-promise-extras', function () {
       deferreds[2].resolve(3)
       $rootScope.$apply()
 
-      return testProm
+      done()
     })
 
     it('works when passed a hash', function (done) {
@@ -48,7 +48,7 @@ describe('angular-promise-extras', function () {
         c: proms[2]
       }
 
-      var testProm = $q.allSettled(promsObj).then(function (results) {
+      $q.allSettled(promsObj).then(function (results) {
         expect(results.a.state).toBe('fulfilled')
         expect(results.b.state).toBe('rejected')
         expect(results.c.state).toBe('fulfilled')
@@ -63,14 +63,14 @@ describe('angular-promise-extras', function () {
       deferreds[2].resolve(3)
 
       $rootScope.$apply()
-      return testProm
+      done()
     })
   })
 
   describe('$q.map', function () {
     it('works when passed an array', function (done) {
       var values = [1, 2, 3]
-      var testProm = $q.map(values, function (val, idx) {
+      $q.map(values, function (val, idx) {
         return $q(function (resolve) {
           resolve(val * idx)
         })
@@ -81,12 +81,12 @@ describe('angular-promise-extras', function () {
         .then(done, done.fail)
 
       $rootScope.$apply()
-      return testProm
+      done()
     })
 
     it('works when passed an object', function (done) {
       var values = {a: 1, b: 2, c: 3}
-      var testProm = $q.map(values, function (val, key) {
+      $q.map(values, function (val, key) {
         return $q(function (resolve) {
           resolve(key + ':' + val)
         })
@@ -97,13 +97,13 @@ describe('angular-promise-extras', function () {
         .then(done, done.fail)
 
       $rootScope.$apply()
-      return testProm
+      done()
     })
   })
 
   describe('$q.resolve', function () {
-    it('resolves to the promise when passed a thenable', function () {
-      var testProm = $q.resolve(
+    it('resolves to the promise when passed a thenable', function (done) {
+      $q.resolve(
         $q(function (resolve) {
           resolve('votegreen')
         })
@@ -113,17 +113,17 @@ describe('angular-promise-extras', function () {
         })
 
       $rootScope.$apply()
-      return testProm
+      done()
     })
 
-    it('resolves to the promise that returns a value when passed a value', function () {
-      var testProm = $q.resolve('damn the conservatives')
+    it('resolves to the promise that returns a value when passed a value', function (done) {
+      $q.resolve('damn the conservatives')
         .then(function (value) {
           expect(value).toBe('damn the conservatives')
         })
 
       $rootScope.$apply()
-      return testProm
+      done()
     })
   })
 })
