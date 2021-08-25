@@ -1,4 +1,4 @@
-; (function(angular) {
+;(function (angular) {
   'use strict';
 
   /**
@@ -6,56 +6,58 @@
    * in lodash.
    * @return {Array|Object} The same type as the input argument.
    */
-  var mapValues = function(obj, callback) {
+  var mapValues = function (obj, callback) {
     if (angular.isArray(obj))
       return obj.map(callback)
 
     var ret = {}
-    Object.keys(obj).forEach(function(key, val) {
+    Object.keys(obj).forEach(function (key, val) {
       ret[key] = callback(obj[key], key)
     })
     return ret
   }
 
-  angular.module('ngPromiseExtras', []).config([ '$provide', function($provide) {
-    $provide.decorator('$q', [ '$delegate', function($delegate) {
+  angular.module('ngPromiseExtras', []).config(['$provide', function ($provide) {
+    $provide.decorator('$q', ['$delegate', function ($delegate) {
       var $q = $delegate
 
-      $q.allSettled = function(promises) {
-        return $q.all(mapValues(promises, function(promiseOrValue) {
-          if (! promiseOrValue.then)
-            return { state: 'fulfilled', value: promiseOrValue }
+      $q.allSettled = function (promises) {
+        return $q.all(mapValues(promises, function (promiseOrValue) {
+          if (!promiseOrValue.then)
+            return {state: 'fulfilled', value: promiseOrValue}
 
-          return promiseOrValue.then(function(value) {
-            return { state: 'fulfilled', value: value }
-          }, function(reason) {
-            return { state: 'rejected', reason: reason }
+          return promiseOrValue.then(function (value) {
+            return {state: 'fulfilled', value: value}
+          }, function (reason) {
+            return {state: 'rejected', reason: reason}
           })
         }))
       }
 
-      $q.map = function(values, callback) {
+      $q.map = function (values, callback) {
         return $q.all(mapValues(values, callback))
       }
 
-      $q.mapSettled = function(values, callback) {
+      $q.mapSettled = function (values, callback) {
         return $q.allSettled(mapValues(values, callback))
       }
 
-      if (! $q.resolve) {
+      if (!$q.resolve) {
         /**
          * Like Bluebird.resolve (was introduced in angular 1.4).
          */
-        $q.resolve = function(value) {
+        $q.resolve = function (value) {
           if (value && value.then)
             return value
           else
-            return $q(function(resolve) { resolve(value) })
+            return $q(function (resolve) {
+              resolve(value)
+            })
         }
       }
 
       return $q
-    } ])
-  } ])
+    }])
+  }])
 
 })(window.angular);
