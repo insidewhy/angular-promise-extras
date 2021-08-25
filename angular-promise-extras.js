@@ -24,12 +24,12 @@
       $q.allSettled = function (promises) {
         return $q.all(mapValues(promises, function (promiseOrValue) {
           if (!promiseOrValue.then)
-            return {state: 'fulfilled', value: promiseOrValue}
+            return {status: 'fulfilled', value: promiseOrValue}
 
           return promiseOrValue.then(function (value) {
-            return {state: 'fulfilled', value: value}
+            return {status: 'fulfilled', value: value}
           }, function (reason) {
-            return {state: 'rejected', reason: reason}
+            return {status: 'rejected', reason: reason}
           })
         }))
       }

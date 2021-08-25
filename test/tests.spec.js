@@ -24,9 +24,9 @@ describe('angular-promise-extras', function () {
       proms.push(4)
 
       $q.allSettled(proms).then(function (results) {
-        expect(results[0].state).toBe('fulfilled')
-        expect(results[1].state).toBe('rejected')
-        expect(results[2].state).toBe('fulfilled')
+        expect(results[0].status).toBe('fulfilled')
+        expect(results[1].status).toBe('rejected')
+        expect(results[2].status).toBe('fulfilled')
         expect(results[0].value).toBe(1)
         expect(results[1].reason).toBe(2)
         expect(results[3].value).toBe(4)
@@ -49,9 +49,9 @@ describe('angular-promise-extras', function () {
       }
 
       $q.allSettled(promsObj).then(function (results) {
-        expect(results.a.state).toBe('fulfilled')
-        expect(results.b.state).toBe('rejected')
-        expect(results.c.state).toBe('fulfilled')
+        expect(results.a.status).toBe('fulfilled')
+        expect(results.b.status).toBe('rejected')
+        expect(results.c.status).toBe('fulfilled')
         expect(results.a.value).toBe(1)
         expect(results.b.reason).toBe(2)
         expect(results.c.value).toBe(3)
